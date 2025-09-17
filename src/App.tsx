@@ -44,6 +44,11 @@ const images = [
   "images/l3.png",
   "images/l4.png",
   "images/l5.png",
+  "images/l1.png",
+  "images/l2.png",
+  "images/l3.png",
+  "images/l4.png",
+  "images/l5.png",
 ];
 
 export default App;
