@@ -1,17 +1,18 @@
 import './App.css';
-import NavBar from './NavBar.tsx';
-import Button from './Button.tsx';
-import ImageRow from './ImageRow.tsx';
-import Services from './services.tsx';
+import NavBar from './NavBar';
+import Button from './Button';
+import ImageRow from './ImageRow';
+import ServSec from './services';
 
 function App() {
   return (
-    <div className="min-h-screen"> {/* no need for bg-black or text-white now */}
+    <div className="min-h-screen">
 
+      {/* Navbar */}
       <NavBar />
 
       {/* Main Texts */}
-      <main className="flex flex-col items-center justify-center text-center pt-35">
+      <main className="flex flex-col items-center justify-center text-center pt-36 px-4">
         <h1 className="text-6xl font-bold mb-4">
           AI Solutions tailored to your <br /> business needs
         </h1>
@@ -32,7 +33,7 @@ function App() {
 
         <Button
           href="/tutorial"
-          style={{ backgroundColor: "#385065", color: "#FFF", borderColor: "#385065" }}
+          style={{ backgroundColor: "#385065", color: "#FFFFFF", borderColor: "#385065" }}
           icon="images/loader.png"
         >
           Tutorial
@@ -40,19 +41,21 @@ function App() {
       </div>
 
       {/* Company Logos */}
-      <section>
-        <p className="text-center text-l font-bold pt-16">Trusted By 40+ Businesses</p>
+      <section className="py-16">
+        <p className="text-center text-lg font-bold mb-8">Trusted By 40+ Businesses</p>
         <ImageRow images={images} />
       </section>
 
       {/* Our Services */}
-      <div>
-        <h2 className="flex flex-col items-center justify-center text-center text-4xl font-bold py-18">
-          Our Services
-
-          <Services/>
-        </h2>
-      </div>
+      <section className="text-center py-16 px-4">
+        <h2 className="text-4xl font-bold mb-12">Our Services</h2>
+        <ServSec
+          image="/images/service1.jpg"
+          alt=""
+          title="AI-Powered Assistance"
+          text="Our platform provides real-time voice-to-text, sign language learning, and interactive storytelling to assist communication."
+        />
+      </section>
 
     </div>
   );
