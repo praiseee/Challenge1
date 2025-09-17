@@ -2,12 +2,13 @@ import Button from './Button.tsx';
 
 function NavBar() {
   return (
+
     // NavBar
     <nav className="text-white flex items-center justify-between px-20 py-8">
 
       {/* Logo Section */}
       <div className="flex items-center">
-        <img src="images/Logo.png" alt="Logo" className="h-6"/>
+        <a href="3"><img src="images/Logo.png" alt="Logo" className="h-6" /></a>
       </div>
 
       {/* Nav Links */}
