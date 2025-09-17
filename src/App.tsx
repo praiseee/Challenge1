@@ -17,19 +17,17 @@ function App() {
       <div className="flex items-center justify-center py-10 gap-5">
         
         <Button href="/startTrial"
-          style={{ backgroundColor: "#653865", 
-          color: "#FFFFFF", 
-          borderColor: "#653865"}}>Start Trial
+          style={{ backgroundColor: "#653865", color:"#FFFFFF", borderColor:"#653865"}}icon="images/skip-forward.png">Start Trial
         </Button>
 
-        <Button href="/startTrial"
-          style={{ backgroundColor: "#385065", 
-          color: "#FFFFFF", 
-          borderColor: "#385065"}}>Start Trial
+        <Button
+            href="/tutorial"
+            style={{ backgroundColor: "#385065", color:"#FFF", borderColor:"#385065" }} icon="images/loader.png">Tutorial
         </Button>
+
       </div>
 
-      {/* Trusted Companies */}
+      {/* Company Logos */}
       <section>
         <p className="items-center justify-center text-center text-lg font-bold">Trusted By 40+ Businesses</p>
         <div>
