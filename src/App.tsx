@@ -1,6 +1,7 @@
 import './App.css';
 import NavBar from './NavBar.tsx';
 import Button from './Button.tsx';
+import ImageRow from './ImageRow.tsx';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       </main>
       
       {/* Main Buttons */}
-      <div className="flex items-center justify-center py-10 gap-5">
+      <div className="flex items-center justify-center py-6 gap-5">
         
         <Button href="/startTrial"
           style={{ backgroundColor: "#653865", color:"#FFFFFF", borderColor:"#653865"}}icon="images/skip-forward.png">Start Trial
@@ -29,16 +30,11 @@ function App() {
 
       {/* Company Logos */}
       <section>
-        <p className="items-center justify-center text-center text-lg font-bold">Trusted By 40+ Businesses</p>
-        <div>
-
-        </div>
+        <p className="items-center justify-center text-center text-l font-bold pt-16">Trusted By 40+ Businesses</p>
+        <ImageRow images={["images/l1.png","images/l2.png","images/l3.png","images/l4.png","images/l5.png", "images/l1.png","images/l2.png","images/l3.png", "images/l4.png","images/l5.png"]}/>
       </section>
 
     </div>
-
-    
-
   );
 }
 
