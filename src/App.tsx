@@ -49,11 +49,26 @@ function App() {
       {/* Our Services */}
       <section className="text-center py-16 px-4">
         <h2 className="text-4xl font-bold mb-12">Our Services</h2>
+        
         <ServSec
-          image="/images/service1.jpg"
-          alt=""
-          title="AI-Powered Assistance"
-          text="Our platform provides real-time voice-to-text, sign language learning, and interactive storytelling to assist communication."
+          image="images/bg.png"
+          alt="Efficiency and Improvement"
+          title="Efficiency and Improvement"
+          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra convallis vulputate. 
+          Aenean tempor blandit sodales. Maecenas vitae sem quam. Maecenas pulvinar risus sodales lectus luctus interdum. 
+          Aliquam erat volutpat. Praesent aliquam elit tempus augue accumsan, quis bibendum nunc pretium. 
+          Nunc et metus congue odio malesuada iaculis."
+        />
+
+        <ServSec
+          image="images/bg.png"
+          alt="Efficiency and Improvement"
+          title="Efficiency and Improvement"
+          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra convallis vulputate. 
+          Aenean tempor blandit sodales. Maecenas vitae sem quam. Maecenas pulvinar risus sodales lectus luctus interdum. 
+          Aliquam erat volutpat. Praesent aliquam elit tempus augue accumsan, quis bibendum nunc pretium. 
+          Nunc et metus congue odio malesuada iaculis."
+          reverse 
         />
       </section>
 

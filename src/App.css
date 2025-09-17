@@ -1,11 +1,11 @@
 /* App.css */
 body {
-  background-color: #000; /* black background for entire app */
+  background-color: #000;
   color: #fff;
-  margin: 0; /* remove default margin */
+  margin: 0;
   font-family: system-ui, sans-serif; 
   background-image: url('images/bg.png');
-  background-position: center;
-  background-size: 800px 700px;
+  background-position: center top;
+  background-size: 700px 800px;
   background-repeat: no-repeat;
 }
