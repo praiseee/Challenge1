@@ -30,7 +30,7 @@ function App() {
       {/* Company Logos */}
       <section>
         <p className="items-center justify-center text-center text-l font-bold pt-16">Trusted By 40+ Businesses</p>
-        <ImageRow images={["images/l1.png","images/l2.png","images/l3.png","images/l4.png","images/l5.png", "images/l1.png","images/l2.png","images/l3.png", "images/l4.png","images/l5.png"]}/>
+        <ImageRow images={images}/>
       </section>
 
       {/* Our Services */}
@@ -41,6 +41,19 @@ function App() {
     </div>
   );
 }
+
+const images = [
+  "images/l1.png",
+  "images/l2.png",
+  "images/l3.png",
+  "images/l4.png",
+  "images/l5.png",
+  "images/l1.png",
+  "images/l2.png",
+  "images/l3.png",
+  "images/l4.png",
+  "images/l5.png",
+];
 
 export default App;
 
