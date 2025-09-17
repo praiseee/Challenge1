@@ -2,6 +2,7 @@ import './App.css';
 import NavBar from './NavBar.tsx';
 import Button from './Button.tsx';
 import ImageRow from './ImageRow.tsx';
+import Services from './services.tsx';
 
 function App() {
   return (
@@ -46,8 +47,10 @@ function App() {
 
       {/* Our Services */}
       <div>
-        <h2 className="flex items-center justify-center text-center text-4xl font-bold py-18">
+        <h2 className="flex flex-col items-center justify-center text-center text-4xl font-bold py-18">
           Our Services
+
+          <Services/>
         </h2>
       </div>
 
