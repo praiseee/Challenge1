@@ -1,13 +1,22 @@
-interface ButtonProps {
-  children: React.ReactNode;
-  href?: string;
+//Defines a TypeScript interface describing the props the Button component accepts.
+interface BtnProps {
+  children: React.ReactNode; //anything React can render
+  href?: string; //optional prop
+  className?: string; //allow extra styles
+  style?: React.CSSProperties;
 }
 
-function Button({ children, href = "#" }: ButtonProps) {
+// declares a React function component called Button
+// children > required content
+// default value if no href is provided #
+// classname default empty string if no extra styles are passed
+
+function Button({ children, href = "#", className = "", style }: BtnProps) {
   return (
     <a
       href={href}
-      className="text-sm font-semibold px-5 py-1 text-white rounded-3xl flex items-center justify-center border border-white"
+      className={`text-sm font-semibold px-5 py-1 rounded-3xl flex items-center justify-center border border-white ${className}`}
+      style={style} // style
     >
       {children}
     </a>
@@ -15,3 +24,5 @@ function Button({ children, href = "#" }: ButtonProps) {
 }
 
 export default Button;
+
+

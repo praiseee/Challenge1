@@ -1,3 +1,5 @@
+import Button from './Button.tsx';
+
 function NavBar() {
   return (
     // NavBar
@@ -19,20 +21,9 @@ function NavBar() {
       </div>
 
       {/* Buttons */}
-      <div className="flex space-x-4">
-        <a 
-          href="/login" 
-          className="text-sm font-semibold px-5 py-1 text-white rounded-3xl flex items-center justify-center border border-white"
-        >
-          Log In
-        </a>
-
-        <a 
-          href="/signup" 
-          className="text-sm font-semibold px-5 py-1 text-black rounded-3xl flex items-center justify-center border border-white bg-white"
-        >
-          Sign Up
-        </a>
+      <div className="flex items-center justify-center gap-5">
+        <Button href="/logIn">Log In</Button>
+        <Button href="/signUp" className="bg-white text-black border-black">Sign Up</Button>
       </div>
 
     </nav>

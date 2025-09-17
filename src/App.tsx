@@ -13,9 +13,20 @@ function App() {
         <p className="text-lg font-light py-4 pb-">Create automations effortlessly! Choose from a vast library of templates or craft your own using our <br/> powerful visual editor.</p>
       </main>
       
+      {/* Main Buttons */}
       <div className="flex items-center justify-center py-10 gap-5">
-        <Button href="/login">Start Trial</Button>
-        <Button href="/login">Tutorial</Button>
+        
+        <Button href="/startTrial"
+          style={{ backgroundColor: "#653865", 
+          color: "#FFFFFF", 
+          borderColor: "#653865"}}>Start Trial
+        </Button>
+
+        <Button href="/startTrial"
+          style={{ backgroundColor: "#385065", 
+          color: "#FFFFFF", 
+          borderColor: "#385065"}}>Start Trial
+        </Button>
       </div>
 
       {/* Trusted Companies */}
