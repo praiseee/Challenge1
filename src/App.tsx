@@ -12,7 +12,7 @@ function App() {
       <NavBar />
 
       {/* Main Texts */}
-      <main className="flex flex-col items-center justify-center text-center pt-36 px-4">
+      <main className="flex flex-col items-center justify-center text-center pt-60 px-4">
         <h1 className="text-6xl font-bold mb-4">
           AI Solutions tailored to your <br /> business needs
         </h1>
@@ -54,6 +54,8 @@ function App() {
           image="images/bg.png"
           alt="Efficiency and Improvement"
           title="Efficiency and Improvement"
+          borderColor="#653865"
+          glow="#653865"
           text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra convallis vulputate. 
           Aenean tempor blandit sodales. Maecenas vitae sem quam. Maecenas pulvinar risus sodales lectus luctus interdum. 
           Aliquam erat volutpat. Praesent aliquam elit tempus augue accumsan, quis bibendum nunc pretium. 
@@ -64,11 +66,14 @@ function App() {
           image="images/bg.png"
           alt="Efficiency and Improvement"
           title="Efficiency and Improvement"
+          borderColor="#385065"
+          glow="#385065"
           text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra convallis vulputate. 
           Aenean tempor blandit sodales. Maecenas vitae sem quam. Maecenas pulvinar risus sodales lectus luctus interdum. 
           Aliquam erat volutpat. Praesent aliquam elit tempus augue accumsan, quis bibendum nunc pretium. 
           Nunc et metus congue odio malesuada iaculis."
           reverse 
+          
         />
       </section>
 
