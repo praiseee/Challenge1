@@ -19,7 +19,6 @@ function NavBar() {
 
       {/* Buttons */}
       <div className="flex items-center gap-5">
-        <Button href="/logIn">Log In</Button>
         <Button href="/signUp" className="bg-white text-black border border-black">Sign Up</Button>
       </div>
 

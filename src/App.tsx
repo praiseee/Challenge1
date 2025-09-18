@@ -2,7 +2,7 @@ import './App.css';
 import NavBar from './NavBar';
 import Button from './Button';
 import ImageRow from './ImageRow';
-import ServSec from './services';
+import ServSec from './Services';
 
 function App() {
   return (
@@ -26,23 +26,20 @@ function App() {
         <Button
           href="/startTrial"
           style={{ backgroundColor: "#653865", color: "#FFFFFF", borderColor: "#653865" }}
-          icon="images/skip-forward.png"
-        >
-          Start Trial
+          icon="images/skip-forward.png">Start Trial
         </Button>
 
         <Button
           href="/tutorial"
-          style={{ backgroundColor: "#385065", color: "#FFFFFF", borderColor: "#385065" }}
-          icon="images/loader.png"
-        >
-          Tutorial
+          style={{ backgroundColor: "#000000ff", color: "#ffffffff", borderColor: "#ffffffff" }}
+          icon="images/loader.png">Tutorial
         </Button>
       </div>
 
       {/* Company Logos */}
       <section className="py-16">
         <p className="text-center text-lg font-bold mb-8">Trusted By 40+ Businesses</p>
+        
         <ImageRow images={images} />
       </section>
 
