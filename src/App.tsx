@@ -1,8 +1,9 @@
 import './App.css';
-import NavBar from './NavBar';
-import Button from './Button';
-import ImageRow from './ImageRow';
-import ServSec from './Services';
+import NavBar from './components/NavBar';
+import Button from './components/Button';
+import ImageRow from './components/ImageRow';
+import ServSec from './components/Services';
+import { motion } from "framer-motion";
 
 function App() {
   return (
@@ -13,12 +14,25 @@ function App() {
 
       {/* Main Texts */}
       <main className="flex flex-col items-center justify-center text-center pt-60 px-4">
-        <h1 className="text-6xl font-bold mb-4">
+        
+        <motion.h1 
+        className="text-6xl font-bold mb-4"
+        initial={{ opacity: 1, y: -40 }} //Defines the starting state
+        animate={{ opacity: 1, y: 0 }} //Defines the final state
+        transition={{ duration: 0.8 }} //Controls how the animation plays (speed, easing, delay..)
+        >
           AI Solutions tailored to your <br /> business needs
-        </h1>
-        <p className="text-lg font-light py-4">
+        </motion.h1>
+
+        <motion.p 
+        className="text-lg font-light py-4"
+        initial={{ opacity: 0, y: -40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        >
           Create automations effortlessly! Choose from a vast library of templates or craft your own using our <br /> powerful visual editor.
-        </p>
+        </motion.p>
+
       </main>
 
       {/* Main Buttons */}
