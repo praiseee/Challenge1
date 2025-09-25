@@ -16,13 +16,12 @@ function Button({
   className = "",
   style,
   icon,
-  hoverEffect = false, // default false
-}: BtnProps) {
+  hoverEffect = false,}: BtnProps) {
   return (
     <motion.a
       href={href}
       className={`text-sm font-semibold px-5 py-1 rounded-3xl flex items-center justify-center border border-white ${className}`}
-      style={style} // Inline styles passed as props
+      style={style} // Styles passed as props
 
       // Only apply hover or tap animations if hoverEffect is true
       whileHover={hoverEffect ? { scale: 1.08, boxShadow: "0px 0px 10px rgba(255, 255, 255, 0.6)" } : undefined}

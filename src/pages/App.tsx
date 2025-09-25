@@ -1,9 +1,10 @@
-import './App.css';
-import NavBar from './components/NavBar';
-import Button from './components/Button';
-import ImageRow from './components/ImageRow';
-import ServSec from './components/Services';
+import '../App.css';
+import NavBar from '../components/NavBar';
+import Button from '../components/Button';
+import ImageRow from '../components/ImageRow';
+import ServSec from '../components/Services';
 import { motion } from "framer-motion";
+import HoverBtn from '../components/hoverBtn';
 
 function App() {
   return (
@@ -63,7 +64,12 @@ function App() {
 
       {/* Our Services */}
       <section className="text-center py-16 px-4">
-        <h2 className="text-4xl font-bold mb-12">Our Services</h2>
+        <motion.h2 className="text-4xl font-bold mb-12"
+        initial={{ opacity: 0, y: -40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        >Our Services
+        </motion.h2>
         
         <ServSec
           image="images/bg.png"
@@ -91,6 +97,8 @@ function App() {
           
         />
       </section>
+      
+      <HoverBtn />
 
     </div>
   );
