@@ -40,13 +40,17 @@ function App() {
         <Button
           href="/startTrial"
           style={{ backgroundColor: "#653865", color: "#FFFFFF", borderColor: "#653865" }}
-          icon="images/skip-forward.png">Start Trial
+          icon="images/skip-forward.png"
+          hoverEffect={true}
+          >Start Trial
         </Button>
 
         <Button
           href="/tutorial"
           style={{ backgroundColor: "#000000ff", color: "#ffffffff", borderColor: "#ffffffff" }}
-          icon="images/loader.png">Tutorial
+          icon="images/loader.png"
+          hoverEffect={true}
+          >Tutorial
         </Button>
       </div>
 

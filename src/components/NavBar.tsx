@@ -19,7 +19,11 @@ function NavBar() {
 
       {/* Buttons */}
       <div className="flex items-center gap-5">
-        <Button href="/signUp" className="bg-white text-black border border-black">Sign Up</Button>
+        <Button href="/signUp" 
+        className="bg-white text-black border border-black"
+        hoverEffect
+        >Sign Up
+        </Button>
       </div>
 
     </nav>
