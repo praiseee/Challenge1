@@ -15,8 +15,8 @@ export default function Counter() {
     <div className="numbers flex items-center justify-center gap-5 font-bold text-5xl">
 
       {/* Static digits */}
-      <div className="flex flex-col items-center justify-center pb-50"><div>1</div></div>
-      <div className="flex flex-col items-center justify-center pb-50"><div>0</div></div>
+      <div className="flex flex-col items-center justify-center pb-1"><div>1</div></div>
+      <div className="flex flex-col items-center justify-center pb-1"><div>0</div></div>
 
       {/* Tens digit */}
       <DigitColumn digit={tens} digits={digits} /> 
@@ -30,7 +30,7 @@ export default function Counter() {
 function DigitColumn({ digit, digits }: { digit: number; digits: number[] }) {
 
   return (
-    <div className="flex flex-col items-center justify-start pb-50 overflow-hidden h-65">
+    <div className="flex flex-col items-center justify-start pb-16 overflow-hidden h-16">
       <div
         className="transition-transform duration-500"
         style={{ transform: `translateY(-${digit * 4}rem)` }}>{digits.map((d) => ( //Input 0,1,2,3..

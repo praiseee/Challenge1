@@ -1,6 +1,6 @@
 const HoverBtn = () => {
   return (
-    <div className="flex items-center justify-center pb-50">
+    <div className="flex items-center justify-center pb-20">
       <button className="relative px-1 py-1 font-bold text-white bg-blue-600 rounded overflow-hidden group h-10 w-32">
         
         {/* Default text */}
