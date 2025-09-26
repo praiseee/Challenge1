@@ -5,6 +5,7 @@ import ImageRow from '../components/ImageRow';
 import ServSec from '../components/Services';
 import { motion } from "framer-motion";
 import HoverBtn from '../components/hoverBtn';
+import Counter from '../components/Counter';
 
 function App() {
   return (
@@ -99,6 +100,12 @@ function App() {
       </section>
       
       <HoverBtn />
+
+      <Counter />
+
+      <div className="p-30">
+
+      </div>
 
     </div>
   );
