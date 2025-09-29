@@ -6,6 +6,7 @@ import ServSec from '../components/Services';
 import { motion } from "framer-motion";
 import HoverBtn from '../components/hoverBtn';
 import Counter from '../components/Counter';
+import AgentWindow from '../components/AgentWindow.tsx';
 import {Accordion,AccordionContent,AccordionItem,AccordionTrigger,} from "../components/accordion"
 
 function App() {
@@ -104,18 +105,22 @@ function App() {
 
       <Counter />
 
-      <div className="p-30"></div>
+      <section className="flex items-center justify-center py-45 px-10">
 
-      <section className="flex items-center justify-between pb-50 px-10">
-
+        {/* Left Content */}
         <div className="flex flex-col max-w-md">
-          <p className="flex flex-col max-w-md font-semibold text-3xl">Agent Canvas</p>
+          
+          <div className="flex items-center gap-5 pb-5">
+            <img src="images/logoWhite.png" alt="Logo" className="w-8 h-8"/>
+            <p className="flex flex-col max-w-md font-semibold text-3xl">Agent Canvas</p>
+          </div>
 
-          <p className="text-m">Agent Canvas is a low-code environment that lets you build, test, 
+          <p className="text-base pb-10">Agent Canvas is a low-code environment that lets you build, test, 
             and deploy custom voice agents fast. 
           </p>
 
-          <Accordion type="single" collapsible className="w-full space-y-2">
+          {/* Accordion */}
+          <Accordion type="single" collapsible className="w-full space-y-2 pb-40">
             
             <AccordionItem value="item-1">
               <AccordionTrigger className="flex items-center gap-2 text-base group">
@@ -197,16 +202,43 @@ function App() {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          
+
         </div>
 
-        <div className= "image, ml-10">
-        <img 
-          src="images/mountains.png" 
-          alt="Agent Canvas illustration" 
-          className="w-[1200px] h-auto"
-        />
+        {/* Right Content */}
+        <div className="relative ml-20">
+          <img 
+            src="images/mountains.png" 
+            alt="Agent Canvas illustration"
+            className="w-full h-auto"
+          />
+
+          <div className="absolute top-[200px] left-[340px]">
+              <AgentWindow />
+          </div>
+
+          <div className="absolute top-[650px] left-[25px]">
+            <div className="flex items-center gap-35 text-sm">
+
+              <div>
+                <p className="font-bold">Training Data</p>
+                <p className="text-gray-400">Provide docs and policies for accuracy.</p>
+              </div>
+
+              <div>
+                <p className="font-bold">Secure Storage</p>
+                <p className="text-gray-400">Files handled with enterprise-grade security.</p>
+              </div>
+
+              <div>
+                <p className="font-bold">Multi-format ready</p>
+                <p className="text-gray-400">Upload PDFs, CSVs, or text files with ease.</p>
+              </div>
+              
+            </div>
+          </div>
         </div>
+
       </section>
 
     </div>
