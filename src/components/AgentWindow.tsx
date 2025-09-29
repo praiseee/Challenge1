@@ -3,7 +3,8 @@ export default function AgentWindow() {
     <div className="relative bg-white rounded-xl shadow-xl w-[400px] overflow-hidden">
       
       {/* Header */}
-      <div className="flex justify-between items-center border-b px-4 py-3 bg-gray-50">
+      <div className="flex gap-22 items-center border-b px-4 py-3 bg-gray-50">
+        <img src="images/logoIcon.png" alt="Logo" className="w-6 h-6"/>
         <h2 className="font-medium text-gray-800">Create new agent</h2>
       </div>
 

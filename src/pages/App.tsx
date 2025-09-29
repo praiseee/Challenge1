@@ -222,17 +222,26 @@ function App() {
 
               <div>
                 <p className="font-bold">Training Data</p>
-                <p className="text-gray-400">Provide docs and policies for accuracy.</p>
+                <div className="flex gap-2 py-2">
+                  <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
+                  <p className="text-gray-400">Provide docs and policies for accuracy.</p>
+                </div>
               </div>
 
               <div>
                 <p className="font-bold">Secure Storage</p>
-                <p className="text-gray-400">Files handled with enterprise-grade security.</p>
+                <div className="flex gap-2 py-2">
+                  <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
+                  <p className="text-gray-400">Files handled with enterprise-grade security.</p>
+                </div>
               </div>
 
               <div>
                 <p className="font-bold">Multi-format ready</p>
-                <p className="text-gray-400">Upload PDFs, CSVs, or text files with ease.</p>
+                <div className="flex gap-2 py-2">
+                  <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
+                  <p className="text-gray-400">Upload PDFs, CSVs, or text files with ease.</p>
+                </div>
               </div>
               
             </div>
