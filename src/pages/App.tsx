@@ -221,27 +221,27 @@ function App() {
             <div className="flex items-center gap-35 text-sm">
 
               <div>
-                <p className="font-bold">Training Data</p>
                 <div className="flex gap-2 py-2">
                   <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
-                  <p className="text-gray-400">Provide docs and policies for accuracy.</p>
+                  <p className="font-bold">Training Data</p>
                 </div>
+                <p className="text-gray-400">Provide docs and policies for accuracy.</p>
               </div>
 
               <div>
-                <p className="font-bold">Secure Storage</p>
                 <div className="flex gap-2 py-2">
                   <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
-                  <p className="text-gray-400">Files handled with enterprise-grade security.</p>
+                  <p className="font-bold">Training Data</p>
                 </div>
+                <p className="text-gray-400">Files handled with enterprise-grade security.</p>
               </div>
 
               <div>
-                <p className="font-bold">Multi-format ready</p>
                 <div className="flex gap-2 py-2">
                   <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
-                  <p className="text-gray-400">Upload PDFs, CSVs, or text files with ease.</p>
+                  <p className="font-bold">Training Data</p>
                 </div>
+                <p className="text-gray-400">Upload PDFs, CSVs, or text files with ease.</p>
               </div>
               
             </div>
