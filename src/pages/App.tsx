@@ -105,12 +105,12 @@ function App() {
 
       <Counter />
 
-      <section className="flex items-center justify-center py-45 px-10">
+      <section className="flex items-start justify-center py-45 px-10">
 
         {/* Left Content */}
         <div className="flex flex-col max-w-md">
           
-          <div className="flex items-center gap-5 pb-5">
+          <div className="flex items-center gap-5 pb-5 py-32">
             <img src="images/logoWhite.png" alt="Logo" className="w-8 h-8"/>
             <p className="flex flex-col max-w-md font-semibold text-3xl">Agent Canvas</p>
           </div>
@@ -206,14 +206,14 @@ function App() {
         </div>
 
         {/* Right Content */}
-        <div className="relative ml-20">
+        <div className="relative ml-20 w-[950px] flex-shrink-0">
           <img 
             src="images/mountains.png" 
             alt="Agent Canvas illustration"
             className="w-full h-auto"
           />
 
-          <div className="absolute top-[200px] left-[340px]">
+          <div className="absolute top-[200px] left-[320px]">
               <AgentWindow />
           </div>
 
