@@ -9,15 +9,17 @@ export default function AgentWindow() {
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b">
-        <div className="flex-1 py-2 text-sm font-medium text-orange-500 border-b-2 border-orange-500 text-center">
-          Chat
-        </div>
-        <div className="flex-1 py-2 text-sm font-medium text-gray-600 text-center">
-          Voice
-        </div>
-        <div className="flex-1 py-2 text-sm font-medium text-gray-600 text-center">
-          Multi-modal
+      <div className="flex justify-center py-2">
+        <div className="flex bg-gray-100 rounded-2xl p-1 w-95 h-8 gap-8 items-center justify center">
+          <div className="px-10 py-1 text-sm font-medium text-orange-500 bg-white rounded-lg shadow">
+            Chat
+          </div>
+          <div className="px-4 py-1 text-sm font-medium text-gray-600 hover:text-gray-800 rounded-lg">
+            Voice
+          </div>
+          <div className="px-4 py-1 text-sm font-medium text-gray-600 hover:text-gray-800 rounded-lg">
+            Multi-modal
+          </div>
         </div>
       </div>
 
