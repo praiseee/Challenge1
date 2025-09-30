@@ -7,7 +7,8 @@ import { motion } from "framer-motion";
 import HoverBtn from '../components/hoverBtn';
 import Counter from '../components/Counter';
 import AgentWindow from '../components/AgentWindow.tsx';
-import {Accordion,AccordionContent,AccordionItem,AccordionTrigger,} from "../components/accordion"
+import AccordionComp from "../components/AccordionComp";
+import InfoBoxes from "../components/InfoBoxes";
 
 function App() {
   return (
@@ -105,6 +106,7 @@ function App() {
 
       <Counter />
 
+      {/* Agent Canvas */}
       <section className="grid grid-cols-1 xl:grid-cols-3 xl:gap-20 items-start justify-center py-16 max-w-7xl mx-auto w-full px-4 xl:px-10">
         {/* Left Content */}
         <div className="flex flex-col max-w-full w-full col-span-1 max-xl:px-10">
@@ -120,67 +122,8 @@ function App() {
           </p>
 
           {/* Accordion */}
-          <Accordion type="single" collapsible className="w-full space-y-2 pb-16 lg:pb-40">
-            <AccordionItem value="item-1">
-              <AccordionTrigger className="flex items-center gap-2 text-base group">
-                <span className="text-gray-400 group-data-[state=open]:text-orange-500 transition">
-                  01
-                </span>
-                <span className="text-white">Create the Agent</span>
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-400">
-                Choose an agent type and upload documents so your agent understands your brand, policies, and workflows.
-              </AccordionContent>
-            </AccordionItem>
+          <AccordionComp />
 
-            <AccordionItem value="item-2">
-              <AccordionTrigger className="flex items-center gap-2 text-base group">
-                <span className="text-gray-400 group-data-[state=open]:text-orange-500 transition">
-                  02
-                </span>
-                <span className="text-white">Define policies</span>
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-400">
-                Set rules and guardrails in plain language. Specify what’s allowed, what’s restricted, and how the agent should handle different scenarios.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-3">
-              <AccordionTrigger className="flex items-center gap-2 text-base group">
-                <span className="text-gray-400 group-data-[state=open]:text-orange-500 transition">
-                  03
-                </span>
-                <span className="text-white">Write the flow</span>
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-400">
-                Author the conversation logic in text. Define turns, conditions, fallbacks, and escalations. Add functions, API calls, and custom code when needed. 
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-4">
-              <AccordionTrigger className="flex items-center gap-2 text-base group">
-                <span className="text-gray-400 group-data-[state=open]:text-orange-500 transition">
-                  04
-                </span>
-                <span className="text-white">Test and Launch</span>
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-400">
-                Run test calls in real time, debug, and redeploy in seconds. Validate changes with traffic-split A/B experiments. Track versions and roll back safely.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-5">
-              <AccordionTrigger className="flex items-center gap-2 text-base group">
-                <span className="text-gray-400 group-data-[state=open]:text-orange-500 transition">
-                  05
-                </span>
-                <span className="text-white">Monitor and improve</span>
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-400">
-                Replay calls, review outcomes, and turn real conversations into test suites. Use experiments to confirm improvements before release.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
         </div>
 
         {/* Right Content */}
@@ -197,35 +140,10 @@ function App() {
           </div>
 
           {/* Info Boxes (always on image, always row) */}
-              <div className="relative z-10 w-full grid grid-cols-1 md:grid-cols-3 gap-4 text-sm justify-center pb-16">
-                
-                <div className="flex-1 px-8">
-                  <div className="flex gap-2 py-2">
-                    <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
-                    <p className="font-bold">Training Data</p>
-                  </div>
-                  <p className="text-gray-400">Provide docs and policies for accuracy.</p>
-                </div>
-
-                <div className="flex-1 px-8">
-                  <div className="flex gap-2 py-2">
-                    <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
-                    <p className="font-bold">Training Data</p>
-                  </div>
-                  <p className="text-gray-400">Files handled with enterprise-grade security.</p>
-                </div>
-
-                <div className="flex-1 px-8">
-                  <div className="flex gap-2 py-2">
-                    <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
-                    <p className="font-bold">Training Data</p>
-                  </div>
-                  <p className="text-gray-400">Upload PDFs, CSVs, or text files with ease.</p>
-                </div>
-
-              </div>
+          <InfoBoxes />
         </div>
       </section>
+      
     </div>
   );
 }
