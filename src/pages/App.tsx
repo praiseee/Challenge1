@@ -105,34 +105,29 @@ function App() {
 
       <Counter />
 
-      <section className="flex items-start justify-center py-45 px-10">
-
+      <section className="flex flex-col lg:flex-row items-start justify-center px-6 lg:px-10 py-16 lg">
         {/* Left Content */}
-        <div className="flex flex-col max-w-md">
+        <div className="flex flex-col max-w-full lg:max-w-md">
           
-          <div className="flex items-center gap-5 pb-5 py-32">
+          <div className="flex items-center gap-5 lg:pt-30 pb-4">
             <img src="images/logoWhite.png" alt="Logo" className="w-8 h-8"/>
-            <p className="flex flex-col max-w-md font-semibold text-3xl">Agent Canvas</p>
+            <p className="font-semibold text-2xl lg:text-3xl">Agent Canvas</p>
           </div>
 
-          <p className="text-base pb-10">Agent Canvas is a low-code environment that lets you build, test, 
+          <p className="text-base pb-8">
+            Agent Canvas is a low-code environment that lets you build, test, 
             and deploy custom voice agents fast. 
           </p>
 
           {/* Accordion */}
-          <Accordion type="single" collapsible className="w-full space-y-2 pb-40">
-            
+          <Accordion type="single" collapsible className="w-full space-y-2 pb-16 lg:pb-40">
             <AccordionItem value="item-1">
               <AccordionTrigger className="flex items-center gap-2 text-base group">
                 <span className="text-gray-400 group-data-[state=open]:text-orange-500 transition">
                   01
                 </span>
-
-                <span className="text-white">
-                  Create the Agent
-                </span>
+                <span className="text-white">Create the Agent</span>
               </AccordionTrigger>
-
               <AccordionContent className="text-gray-400">
                 Choose an agent type and upload documents so your agent understands your brand, policies, and workflows.
               </AccordionContent>
@@ -143,12 +138,8 @@ function App() {
                 <span className="text-gray-400 group-data-[state=open]:text-orange-500 transition">
                   02
                 </span>
-
-                <span className="text-white">
-                  Define policies
-                </span>
+                <span className="text-white">Define policies</span>
               </AccordionTrigger>
-
               <AccordionContent className="text-gray-400">
                 Set rules and guardrails in plain language. Specify what’s allowed, what’s restricted, and how the agent should handle different scenarios.
               </AccordionContent>
@@ -159,12 +150,8 @@ function App() {
                 <span className="text-gray-400 group-data-[state=open]:text-orange-500 transition">
                   03
                 </span>
-
-                <span className="text-white">
-                  Write the flow
-                </span>
+                <span className="text-white">Write the flow</span>
               </AccordionTrigger>
-
               <AccordionContent className="text-gray-400">
                 Author the conversation logic in text. Define turns, conditions, fallbacks, and escalations. Add functions, API calls, and custom code when needed. 
               </AccordionContent>
@@ -175,12 +162,8 @@ function App() {
                 <span className="text-gray-400 group-data-[state=open]:text-orange-500 transition">
                   04
                 </span>
-
-                <span className="text-white">
-                  Test and Launch
-                </span>
+                <span className="text-white">Test and Launch</span>
               </AccordionTrigger>
-
               <AccordionContent className="text-gray-400">
                 Run test calls in real time, debug, and redeploy in seconds. Validate changes with traffic-split A/B experiments. Track versions and roll back safely.
               </AccordionContent>
@@ -191,65 +174,62 @@ function App() {
                 <span className="text-gray-400 group-data-[state=open]:text-orange-500 transition">
                   05
                 </span>
-
-                <span className="text-white">
-                  Monitor and improve
-                </span>
+                <span className="text-white">Monitor and improve</span>
               </AccordionTrigger>
-
               <AccordionContent className="text-gray-400">
                 Replay calls, review outcomes, and turn real conversations into test suites. Use experiments to confirm improvements before release.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-
         </div>
 
         {/* Right Content */}
-        <div className="relative ml-20 w-[950px] flex-shrink-0">
+        <div className="relative w-full lg:w-[950px] mt-10 lg:mt-0 lg:ml-20 flex-shrink-0">
           <img 
             src="images/mountains.png" 
             alt="Agent Canvas illustration"
             className="w-full h-auto"
           />
 
-          <div className="absolute top-[200px] left-[320px]">
-              <AgentWindow />
+          {/* Agent Window (always on image) */}
+          <div className="absolute top-[20%] left-1/2 -translate-x-1/2 max-w-[250px]">
+            <AgentWindow />
           </div>
 
-          <div className="absolute top-[650px] left-[25px]">
-            <div className="flex items-center gap-35 text-sm">
-
-              <div>
-                <div className="flex gap-2 py-2">
-                  <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
-                  <p className="font-bold">Training Data</p>
+          {/* Info Boxes (always on image, always row) */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 lg:top-[70%] lg:left-[5%] lg:translate-x-0 w-full max-w-[90%]">
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 lg:top-[70%] lg:left-[5%] lg:translate-x-0 w-full max-w-[90%]">
+              <div className="flex flex-row gap-4 lg:gap-20 text-sm flex-wrap justify-center">
+                
+                <div className="flex-1 min-w-[120px]">
+                  <div className="flex gap-2 py-2">
+                    <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
+                    <p className="font-bold">Training Data</p>
+                  </div>
+                  <p className="text-gray-400">Provide docs and policies for accuracy.</p>
                 </div>
-                <p className="text-gray-400">Provide docs and policies for accuracy.</p>
-              </div>
 
-              <div>
-                <div className="flex gap-2 py-2">
-                  <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
-                  <p className="font-bold">Training Data</p>
+                <div className="flex-1 min-w-[120px]">
+                  <div className="flex gap-2 py-2">
+                    <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
+                    <p className="font-bold">Training Data</p>
+                  </div>
+                  <p className="text-gray-400">Files handled with enterprise-grade security.</p>
                 </div>
-                <p className="text-gray-400">Files handled with enterprise-grade security.</p>
-              </div>
 
-              <div>
-                <div className="flex gap-2 py-2">
-                  <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
-                  <p className="font-bold">Training Data</p>
+                <div className="flex-1 min-w-[120px]">
+                  <div className="flex gap-2 py-2">
+                    <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
+                    <p className="font-bold">Training Data</p>
+                  </div>
+                  <p className="text-gray-400">Upload PDFs, CSVs, or text files with ease.</p>
                 </div>
-                <p className="text-gray-400">Upload PDFs, CSVs, or text files with ease.</p>
+
               </div>
-              
             </div>
           </div>
         </div>
-
       </section>
-
     </div>
   );
 }
