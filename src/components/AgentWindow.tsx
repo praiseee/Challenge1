@@ -1,6 +1,6 @@
 export default function AgentWindow() {
   return (
-    <div className="relative bg-white rounded-xl shadow-xl w-[400px] overflow-hidden">
+    <div className="relative z-20 bg-white rounded-xl shadow-xl max-w-[500px] max-md:max-w-full w-full overflow-hidden">
       
       {/* Header */}
       <div className="flex gap-22 items-center border-b px-4 py-3 bg-gray-50">
@@ -9,15 +9,15 @@ export default function AgentWindow() {
       </div>
 
       {/* Tabs */}
-      <div className="flex justify-center py-2">
-        <div className="flex bg-gray-100 rounded-2xl p-1 w-95 h-8 gap-8 items-center justify center">
-          <div className="px-10 py-1 text-sm font-medium text-orange-500 bg-white rounded-lg shadow">
+      <div className="flex justify-center p-2 w-full">
+        <div className="flex bg-gray-100 rounded-xl p-1 w-full h-fit items-center justify center grid grid-cols-3">
+          <div className="px-4 py-1 text-xs font-medium text-orange-500 bg-white rounded-lg shadow text-center w-full">
             Chat
           </div>
-          <div className="px-4 py-1 text-sm font-medium text-gray-600 hover:text-gray-800 rounded-lg">
+          <div className="px-4 py-1 text-xs font-medium text-gray-600 hover:text-gray-800 rounded-lg text-center w-full">
             Voice
           </div>
-          <div className="px-4 py-1 text-sm font-medium text-gray-600 hover:text-gray-800 rounded-lg">
+          <div className="px-4 py-1 text-xs font-medium text-gray-600 hover:text-gray-800 rounded-lg text-center w-full">
             Multi-modal
           </div>
         </div>
@@ -41,8 +41,8 @@ export default function AgentWindow() {
       </div>
 
       {/* Footer */}
-      <div className="flex justify-end gap-3 px-4 py-3 bg-gray-50">
-        <div className="text-gray-500">Cancel</div>
+      <div className="flex justify-end items-center gap-2 px-4 py-3 bg-gray-50">
+        <div className="text-gray-500 px-4 py-1">Cancel</div>
         <div className="bg-black text-white rounded-full px-4 py-1 font-medium">Create agent</div>
       </div>
 

@@ -105,9 +105,9 @@ function App() {
 
       <Counter />
 
-      <section className="flex flex-col lg:flex-row items-start justify-center px-6 lg:px-10 py-16 lg">
+      <section className="grid grid-cols-1 xl:grid-cols-3 xl:gap-20 items-start justify-center py-16 max-w-7xl mx-auto w-full px-4 xl:px-10">
         {/* Left Content */}
-        <div className="flex flex-col max-w-full lg:max-w-md">
+        <div className="flex flex-col max-w-full w-full col-span-1 max-xl:px-10">
           
           <div className="flex items-center gap-5 lg:pt-30 pb-4">
             <img src="images/logoWhite.png" alt="Logo" className="w-8 h-8"/>
@@ -184,24 +184,22 @@ function App() {
         </div>
 
         {/* Right Content */}
-        <div className="relative w-full lg:w-[950px] mt-10 lg:mt-0 lg:ml-20 flex-shrink-0">
+        <div className="relative w-full flex-shrink-0 col-span-2 flex flex-col items-center justify-center h-full">
           <img 
             src="images/mountains.png" 
             alt="Agent Canvas illustration"
-            className="w-full h-auto"
+            className="w-full h-full z-0 absolute top-0 left-0 object-cover"
           />
 
           {/* Agent Window (always on image) */}
-          <div className="absolute top-[20%] left-1/2 -translate-x-1/2 max-w-[250px]">
+          <div className="relative z-10 w-full h-full flex items-center justify-center max-md:py-8 py-20 px-8">
             <AgentWindow />
           </div>
 
           {/* Info Boxes (always on image, always row) */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 lg:top-[70%] lg:left-[5%] lg:translate-x-0 w-full max-w-[90%]">
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 lg:top-[70%] lg:left-[5%] lg:translate-x-0 w-full max-w-[90%]">
-              <div className="flex flex-row gap-4 lg:gap-20 text-sm flex-wrap justify-center">
+              <div className="relative z-10 w-full grid grid-cols-1 md:grid-cols-3 gap-4 text-sm justify-center pb-16">
                 
-                <div className="flex-1 min-w-[120px]">
+                <div className="flex-1 px-8">
                   <div className="flex gap-2 py-2">
                     <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
                     <p className="font-bold">Training Data</p>
@@ -209,7 +207,7 @@ function App() {
                   <p className="text-gray-400">Provide docs and policies for accuracy.</p>
                 </div>
 
-                <div className="flex-1 min-w-[120px]">
+                <div className="flex-1 px-8">
                   <div className="flex gap-2 py-2">
                     <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
                     <p className="font-bold">Training Data</p>
@@ -217,7 +215,7 @@ function App() {
                   <p className="text-gray-400">Files handled with enterprise-grade security.</p>
                 </div>
 
-                <div className="flex-1 min-w-[120px]">
+                <div className="flex-1 px-8">
                   <div className="flex gap-2 py-2">
                     <img src="images/logoWhite.png" alt="Logo" className="w-5 h-5"/>
                     <p className="font-bold">Training Data</p>
@@ -226,8 +224,6 @@ function App() {
                 </div>
 
               </div>
-            </div>
-          </div>
         </div>
       </section>
     </div>
