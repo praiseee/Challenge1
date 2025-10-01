@@ -10,6 +10,7 @@ import AgentWindow from '../components/AgentWindow.tsx';
 import AccordionComp from "../components/AccordionComp";
 import InfoBoxes from "../components/InfoBoxes";
 import GlowButton from "../components/GlowButton";
+import SlantImageRow from '../components/SlantImageRow';
 
 function App() {
   return (
@@ -147,6 +148,8 @@ function App() {
 
       {/* Glow Button */}
       <GlowButton>Glow</GlowButton>
+
+      <SlantImageRow images={slantimages} />
       
     </div>
   );
@@ -163,6 +166,15 @@ const images = [
   "images/l3.png",
   "images/l4.png",
   "images/l5.png",
+];
+
+const slantimages = [
+  "images/s1.png",
+  "images/s2.png",
+  "images/s3.png",
+  "images/s4.png",
+  "images/s5.png",
+  "images/s6.png",
 ];
 
 export default App;
