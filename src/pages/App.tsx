@@ -146,7 +146,7 @@ function App() {
       </section>
 
       {/* Glow Button */}
-      <GlowButton>Glow</GlowButton>
+      <GlowButton>Glowing animation</GlowButton>
       
     </div>
   );
