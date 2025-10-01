@@ -9,6 +9,7 @@ import Counter from '../components/Counter';
 import AgentWindow from '../components/AgentWindow.tsx';
 import AccordionComp from "../components/AccordionComp";
 import InfoBoxes from "../components/InfoBoxes";
+import GlowButton from "../components/GlowButton";
 
 function App() {
   return (
@@ -143,6 +144,9 @@ function App() {
           <InfoBoxes />
         </div>
       </section>
+
+      {/* Glow Button */}
+      <GlowButton>Glow</GlowButton>
       
     </div>
   );
