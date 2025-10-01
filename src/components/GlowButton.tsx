@@ -29,10 +29,12 @@ export default function GlowButton({
 
         {/* Glow traveling along perimeter */}
         <motion.div
-          className="absolute -inset-0.5 rounded- pointer-events-none"
+          className="absolute w-20 h-6 rounded-full pointer-events-none"
           style={{
-            background:"conic-gradient(from 45deg, rgba(86,219,172,0.8), rgba(0,255,255,0.8), rgba(86,219,172,0.8))",
+            background: "rgba(86,219,172,0.8)",
             filter: "blur(5px)",
+            top: "20%",
+            left: "0%",
             zIndex: 0,
           }}
           animate={{ rotate: 360 }}
