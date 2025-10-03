@@ -14,7 +14,7 @@ import SlantImageRow from '../components/SlantImageRow';
 
 function App() {
   return (
-    <div className="min-h-screen">
+    <div className="app-page min-h-screen">
 
       {/* Navbar */}
       <NavBar />
