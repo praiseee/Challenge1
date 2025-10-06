@@ -2,9 +2,10 @@ import { useState } from "react"
 import useTodoStore from "../store/todoStore"
 
 function TodoPage() {
-  const { addList } = useTodoStore()
-  const [inputs, setInputs] = useState([{ id: Date.now(), value: "" }])
+  const { addList } = useTodoStore() //Add list function for zustand store
+  const [inputs, setInputs] = useState([{ id: Date.now(), value: "" }]) //Holding an array of input objects. When the page loads, you see one blank input line.
 
+  // Runs whenever the user types in any input box.
   const handleChange = (id: number, value: string) => {
     setInputs((prev) => {
       const updated = prev.map((input) =>
@@ -21,9 +22,10 @@ function TodoPage() {
     })
   }
 
+  //Enter key
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, id: number, value: string) => {
     if (e.key === "Enter" && value.trim()) {
-      addList(value)
+      addList(value) //Calls your Zustand store’s addList() function
       setInputs((prev) =>
         prev.map((input) => (input.id === id ? { ...input, value: "" } : input))
       )
@@ -35,6 +37,7 @@ function TodoPage() {
       <div className="relative z-20 bg-white rounded-xl shadow-xl max-w-[400px] h-[500px] w-full overflow-auto p-6 flex flex-col">
         <h2 className="text-lg font-semibold mb-4">Your To-do List</h2>
 
+        {/* Inpout Rows */}
         <div className="flex flex-col gap-3">
           {inputs.map((input) => (
             <div key={input.id} className="flex items-center gap-3">
@@ -42,7 +45,7 @@ function TodoPage() {
               {/* Circle */}
               <div className="w-5 h-5 rounded-full border border-gray-500 flex-shrink-0"></div>
 
-              {/* Input */}
+              {/* Text Input */}
               <input
                 type="text"
                 value={input.value}
