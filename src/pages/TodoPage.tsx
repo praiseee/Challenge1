@@ -1,15 +1,32 @@
-import { useState } from 'react'
-import useTodoStore from '../store/todoStore'
+import { useState } from "react"
+import useTodoStore from "../store/todoStore"
 
 function TodoPage() {
-  const { list, addList } = useTodoStore()
-  const [newTodo, setNewTodo] = useState("")
+  const { addList } = useTodoStore()
+  const [inputs, setInputs] = useState([{ id: Date.now(), value: "" }])
 
-  // Called when a key is pressed
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && newTodo.trim()) {
-      addList(newTodo) 
-      setNewTodo("") 
+  const handleChange = (id: number, value: string) => {
+    setInputs((prev) => {
+      const updated = prev.map((input) =>
+        input.id === id ? { ...input, value } : input
+      )
+
+      // Check if the user is typing in the last input
+      const isLast = prev[prev.length - 1].id === id
+      if (isLast && value.trim() !== "") {
+        updated.push({ id: Date.now(), value: "" })
+      }
+
+      return updated
+    })
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, id: number, value: string) => {
+    if (e.key === "Enter" && value.trim()) {
+      addList(value)
+      setInputs((prev) =>
+        prev.map((input) => (input.id === id ? { ...input, value: "" } : input))
+      )
     }
   }
 
@@ -18,25 +35,26 @@ function TodoPage() {
       <div className="relative z-20 bg-white rounded-xl shadow-xl max-w-[400px] h-[500px] w-full overflow-auto p-6 flex flex-col">
         <h2 className="text-lg font-semibold mb-4">Your To-do List</h2>
 
-        {/* Input */}
-        <input
-          type="text"
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="Type something and press Enter"
-          className="text-sm text-gray-700 border-b border-gray-400 focus:outline-none focus:border-gray-400 w-full py-2 mb-4"
-        />
+        <div className="flex flex-col gap-3">
+          {inputs.map((input) => (
+            <div key={input.id} className="flex items-center gap-3">
+              
+              {/* Circle */}
+              <div className="w-5 h-5 rounded-full border border-gray-500 flex-shrink-0"></div>
 
-        {/* Circles for each todo */}
-        <div className="flex flex-col gap-2">
-          {list.map((todo) => (
-            <div
-              key={todo.id}
-              className="w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center"
-            ></div>
+              {/* Input */}
+              <input
+                type="text"
+                value={input.value}
+                onChange={(e) => handleChange(input.id, e.target.value)}
+                onKeyDown={(e) => handleKeyDown(e, input.id, input.value)}
+                placeholder="Type a task..."
+                className="text-sm text-gray-700 border-b border-gray-300 focus:outline-none w-full py-1"
+              />
+            </div>
           ))}
         </div>
+        
       </div>
     </div>
   )
