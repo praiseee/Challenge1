@@ -1,16 +1,16 @@
 import '../App.css';
-import NavBar from '../components/NavBar';
-import Button from '../components/Button';
-import ImageRow from '../components/ImageRow';
-import ServSec from '../components/Services';
+import NavBar from '../components/CH1/NavBar.tsx';
+import Button from '../components/CH1/Button.tsx';
+import ImageRow from '../components/CH1/ImageRow.tsx';
+import ServSec from '../components/CH1/Services.tsx';
 import { motion } from "framer-motion";
-import HoverBtn from '../components/hoverBtn';
-import Counter from '../components/Counter';
-import AgentWindow from '../components/AgentWindow.tsx';
-import AccordionComp from "../components/AccordionComp";
-import InfoBoxes from "../components/InfoBoxes";
-import GlowButton from "../components/GlowButton";
-import SlantImageRow from '../components/SlantImageRow';
+import HoverBtn from '../components/CH1/hoverBtn.tsx';
+import Counter from '../components/CH1/Counter.tsx';
+import AgentWindow from '../components/CH1/AgentWindow.tsx';
+import AccordionComp from "../components/CH1/AccordionComp.tsx";
+import InfoBoxes from "../components/CH1/InfoBoxes.tsx";
+import GlowButton from "../components/CH1/GlowButton.tsx";
+import SlantImageRow from '../components/CH1/SlantImageRow.tsx';
 
 function App() {
   return (
