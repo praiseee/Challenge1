@@ -3,6 +3,9 @@ import useTodoStore from "../store/todoStore";
 import AddBtn from "../components/TodoComp/AddBtn.tsx";
 import TodoItem from "../components/TodoComp/TodoItem.tsx";
 
+// DnD-kit imports
+import {DndContext,closestCenter,PointerSensor,useSensor,useSensors,} from "@dnd-kit/core";
+import {arrayMove,SortableContext,verticalListSortingStrategy,} from "@dnd-kit/sortable";
 interface TodoInput {
   id: number;
   value: string;
@@ -12,7 +15,7 @@ interface TodoInput {
 function TodoPage() {
   const { list, addList, removeList, toggleDone: toggleDoneStore } = useTodoStore();
 
-  // Local state for UI rows, initialized from store
+  // Local state for UI rows, from store
   const [inputs, setInputs] = useState<TodoInput[]>(() =>
     list.length > 0
       ? list.map((todo) => ({ id: todo.id, value: todo.text, done: todo.done }))
@@ -57,7 +60,7 @@ function TodoPage() {
     setInputs((prev) =>
       prev.map((input) => (input.id === id ? { ...input, done: !input.done } : input))
     );
-    toggleDoneStore(id); // update store
+    toggleDoneStore(id);
   };
 
   // Delete task
@@ -71,35 +74,67 @@ function TodoPage() {
     setInputs((prev) => [...prev, { id: Date.now(), value: "", done: false }]);
   };
 
+  // DnD-kit setup
+  const sensors = useSensors(useSensor(PointerSensor));
+
+  // Handle reorder logic
+  const handleDragEnd = (event: any) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    setInputs((prev) => {
+      const oldIndex = prev.findIndex((item) => item.id === active.id);
+      const newIndex = prev.findIndex((item) => item.id === over.id);
+      const newList = arrayMove(prev, oldIndex, newIndex);
+
+      // Persist reordered list
+      useTodoStore.setState({
+        list: newList.map((i) => ({
+          id: i.id,
+          text: i.value,
+          done: i.done,
+        })),
+      });
+
+      return newList;
+    });
+  };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center">
+
       {/* Todo container */}
       <div className="relative bg-white rounded-xl shadow-xl max-w-[400px] h-[500px] w-full overflow-auto p-6 flex flex-col">
         <h2 className="text-lg font-semibold mb-4">Your To-do List</h2>
 
-        {/* Todo items list */}
-        <div className="flex flex-col gap-3">
-          {inputs.map((input, idx) => (
-            <TodoItem
-              key={input.id}
-              id={input.id}
-              value={input.value}
-              done={input.done}
-              isLast={idx === inputs.length - 1}
-              lastInputRef={lastInputRef}
-              handleChange={handleChange}
-              handleKeyDown={handleKeyDown}
-              toggleDone={toggleDone}
-              handleDelete={handleDelete}
-            />
-          ))}
-        </div>
+        {/* Todo items list (wrapped with DnD context) */}
+        <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+          <SortableContext items={inputs.map((i) => i.id)} strategy={verticalListSortingStrategy}>
+            
+            <div className="flex flex-col gap-3">
+              {inputs.map((input, idx) => (
+                <TodoItem
+                  key={input.id}
+                  id={input.id}
+                  value={input.value}
+                  done={input.done}
+                  isLast={idx === inputs.length - 1}
+                  lastInputRef={lastInputRef}
+                  handleChange={handleChange}
+                  handleKeyDown={handleKeyDown}
+                  toggleDone={toggleDone}
+                  handleDelete={handleDelete}/>
+              ))}
+            </div>
+
+          </SortableContext>
+        </DndContext>
 
         {/* Add Button */}
         <div className="absolute bottom-6 right-6">
-          <AddBtn onClick={handleAddClick} />
+          <AddBtn onClick={handleAddClick}/>
         </div>
+        
       </div>
     </div>
   );
