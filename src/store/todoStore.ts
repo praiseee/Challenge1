@@ -1,53 +1,61 @@
-import { create } from "zustand"
-import { persist, createJSONStorage } from "zustand/middleware"
+import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
-// Todo App Can have
 interface Todo {
-  id: number
-  text: string
-  done: boolean
+  id: number;
+  text: string;
+  done: boolean;
 }
 
-// Describe what the store will contain
 interface TodoState {
-  list: Todo[]
-  addList: (text: string) => void
-  removeList: (id: number) => void
-  toggleDone: (id: number) => void
+  list: Todo[];
+  addList: (text: string) => void;
+  removeList: (id: number) => void;
+  toggleDone: (id: number) => void;
+  updateText: (id: number, text: string) => void;
+  updateListOrder: (newList: Todo[]) => void;
 }
 
-// Persist
 const useTodoStore = create<TodoState>()(
   persist(
     (set) => ({
-      // state: start with empty todos
       list: [],
 
-      // add a new todo
+      // Add
       addList: (text) =>
         set((state) => ({
           list: [...state.list, { id: Date.now(), text, done: false }],
         })),
 
-      // remove a todo by id
+      // Delete
       removeList: (id) =>
         set((state) => ({
           list: state.list.filter((todo) => todo.id !== id),
         })),
 
-      // toggle done state
+      // Circle
       toggleDone: (id) =>
         set((state) => ({
           list: state.list.map((todo) =>
             todo.id === id ? { ...todo, done: !todo.done } : todo
           ),
         })),
+
+      // Update
+      updateText: (id, text) =>
+        set((state) => ({
+          list: state.list.map((todo) =>
+            todo.id === id ? { ...todo, text } : todo
+          ),
+        })),
+
+      updateListOrder: (newList) => set({ list: newList }),
     }),
     {
-      name: "todo-storage", // unique key in localStorage
+      name: "todo-storage",
       storage: createJSONStorage(() => localStorage),
     }
   )
-)
+);
 
-export default useTodoStore
+export default useTodoStore;

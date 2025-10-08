@@ -21,9 +21,9 @@ const SortableTodoItem = (props: any) => {
         className="cursor-grab mr-2 p-1"
         title="Drag to reorder">
 
-        <div className="w-4 h-0.25 bg-gray-400 mb-1 rounded-sm"></div>
-        <div className="w-4 h-0.25 bg-gray-400 mb-1 rounded-sm"></div>
-        <div className="w-4 h-0.25 bg-gray-400 mb-1 rounded-sm"></div>
+        <div className="w-3 h-0.25 bg-gray-400 mb-1 rounded-sm"></div>
+        <div className="w-3 h-0.25 bg-gray-400 mb-1 rounded-sm"></div>
+        <div className="w-3 h-0.25 bg-gray-400 mb-1 rounded-sm"></div>
     </div>
 
       <TodoItem {...props} />

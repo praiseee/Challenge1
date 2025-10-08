@@ -1,124 +1,101 @@
 import { useState, useEffect, useRef } from "react";
 import useTodoStore from "../store/todoStore";
-import AddBtn from "../components/TodoComp/AddBtn.tsx";
-import TodoItem from "../components/TodoComp/TodoItem.tsx";
+import AddBtn from "../components/TodoComp/AddBtn";
+import TodoItem from "../components/TodoComp/TodoItem";
 
-// DnD-kit imports
 import {DndContext,closestCenter,PointerSensor,useSensor,useSensors,} from "@dnd-kit/core";
 import {arrayMove,SortableContext,verticalListSortingStrategy,} from "@dnd-kit/sortable";
-interface TodoInput {
-  id: number;
-  value: string;
-  done: boolean;
-}
 
 function TodoPage() {
-  const { list, addList, removeList, toggleDone: toggleDoneStore } = useTodoStore();
 
-  // Local state for UI rows, from store
-  const [inputs, setInputs] = useState<TodoInput[]>(() =>
-    list.length > 0
-      ? list.map((todo) => ({ id: todo.id, value: todo.text, done: todo.done }))
-      : [{ id: Date.now(), value: "", done: false }]
-  );
+  // Uses list directly from the store
+  // Persists the reordered array after drag.
+  const { list, addList, removeList, toggleDone, updateListOrder, updateText } = useTodoStore();
 
-  // Last input, when a new row is added
+  // Local state for the search input.
+  const [searchItem, setSearchItem] = useState("");
   const lastInputRef = useRef<HTMLInputElement | null>(null);
 
-  // Focus on last input whenever it changes
+  // Focus on last input when new one is added
   useEffect(() => {
     lastInputRef.current?.focus();
-  }, [inputs.length]);
+  }, [list.length]);
 
-  // Input field
-  const handleChange = (id: number, value: string) => {
-    setInputs((prev) => prev.map((input) => (input.id === id ? { ...input, value } : input)));
+  // DndContext so drag gestures are recognized.
+  const sensors = useSensors(useSensor(PointerSensor));
+
+  const handleAddClick = () => {
+    addList("");
   };
 
-  // Handle Enter key to add a new todo
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, id: number, value: string) => {
-    if (e.key === "Enter") {
-      const trimmed = value.trim();
-      if (!trimmed) return;
-
-      // Add to store
-      addList(trimmed);
-
-      // Only add a new row if this is the last row
-      setInputs((prev) => {
-        const isLast = prev[prev.length - 1].id === id;
-        if (isLast) {
-          return [...prev, { id: Date.now(), value: "", done: false }];
-        }
-        return prev;
-      });
+  // Enter key handling, add new row
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    id: number,
+    value: string
+  ) => {
+    if (e.key === "Enter" && value.trim()) {
+      const isLast = list[list.length - 1]?.id === id;
+      if (isLast) addList("");
     }
   };
 
-  // Done state for a todo item
-  const toggleDone = (id: number) => {
-    setInputs((prev) =>
-      prev.map((input) => (input.id === id ? { ...input, done: !input.done } : input))
-    );
-    toggleDoneStore(id);
+  // Typing updates the store immediately
+  const handleChange = (id: number, value: string) => {
+    updateText(id, value); //Updated individually
   };
 
-  // Delete task
+  // Delete
   const handleDelete = (id: number) => {
     removeList(id);
-    setInputs((prev) => prev.filter((input) => input.id !== id));
   };
 
-  // Add a new empty todo row
-  const handleAddClick = () => {
-    setInputs((prev) => [...prev, { id: Date.now(), value: "", done: false }]);
-  };
-
-  // DnD-kit setup
-  const sensors = useSensors(useSensor(PointerSensor));
-
-  // Handle reorder logic
+  // Reorder handler
   const handleDragEnd = (event: any) => {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
 
-    setInputs((prev) => {
-      const oldIndex = prev.findIndex((item) => item.id === active.id);
-      const newIndex = prev.findIndex((item) => item.id === over.id);
-      const newList = arrayMove(prev, oldIndex, newIndex);
-
-      // Persist reordered list
-      useTodoStore.setState({
-        list: newList.map((i) => ({
-          id: i.id,
-          text: i.value,
-          done: i.done,
-        })),
-      });
-
-      return newList;
-    });
+    const oldIndex = list.findIndex((item) => item.id === active.id);
+    const newIndex = list.findIndex((item) => item.id === over.id);
+    const newList = arrayMove(list, oldIndex, newIndex);
+    updateListOrder(newList);
   };
+
+  // Search
+  const filteredList = list.filter((item) =>
+    item.text.toLowerCase().includes(searchItem.toLowerCase())
+  );
 
   return (
     <div className="fixed inset-0 flex items-center justify-center">
-
-      {/* Todo container */}
       <div className="relative bg-white rounded-xl shadow-xl max-w-[400px] h-[500px] w-full overflow-auto p-6 flex flex-col">
         <h2 className="text-lg font-semibold mb-4">Your To-do List</h2>
 
-        {/* Todo items list (wrapped with DnD context) */}
-        <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-          <SortableContext items={inputs.map((i) => i.id)} strategy={verticalListSortingStrategy}>
-            
+        {/*Search*/}
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchItem}
+          onChange={(e) => setSearchItem(e.target.value)}
+          className="mb-4 p-1 text-sm border rounded-md w-full focus:outline-none focus:ring-1 focus:ring-blue-300"/>
+
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}>
+
+          <SortableContext
+            items={filteredList.map((i) => i.id)}
+            strategy={verticalListSortingStrategy}>
+
             <div className="flex flex-col gap-3">
-              {inputs.map((input, idx) => (
+              {filteredList.map((item, idx) => (
                 <TodoItem
-                  key={input.id}
-                  id={input.id}
-                  value={input.value}
-                  done={input.done}
-                  isLast={idx === inputs.length - 1}
+                  key={item.id}
+                  id={item.id}
+                  value={item.text}
+                  done={item.done}
+                  isLast={idx === filteredList.length - 1}
                   lastInputRef={lastInputRef}
                   handleChange={handleChange}
                   handleKeyDown={handleKeyDown}
@@ -130,11 +107,9 @@ function TodoPage() {
           </SortableContext>
         </DndContext>
 
-        {/* Add Button */}
         <div className="absolute bottom-6 right-6">
-          <AddBtn onClick={handleAddClick}/>
+          <AddBtn onClick={handleAddClick} />
         </div>
-        
       </div>
     </div>
   );
