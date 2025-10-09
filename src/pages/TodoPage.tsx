@@ -28,6 +28,22 @@ function TodoPage() {
   // DnD, drag gestures recognised
   const sensors = useSensors(useSensor(PointerSensor));
 
+  // Debounce function
+  function debounce<T extends (...args: any[]) => void>(fn: T, delay: number) {
+    let timer: ReturnType<typeof setTimeout>;
+    return (...args: Parameters<T>) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn(...args), delay);
+    };
+  }
+
+  // Debounced toast only (store updates instantly)
+  const debouncedToast = useRef(
+    debounce(() => {
+      toast.info("Task updated", { duration: 1000 });
+    }, 800) // 800ms after last keystroke
+  ).current;
+
   // Added toast
   const handleAddClick = () => {
     addList("");
@@ -49,10 +65,10 @@ function TodoPage() {
     }
   };
 
-  // Updated toast
+  // Updated toast (store updates instantly, toast debounced)
   const handleChange = (id: number, value: string) => {
-    updateText(id, value);
-    toast.info("Task Updated", { duration: 1000 });
+    updateText(id, value); // update store instantly
+    debouncedToast(); // debounce toast
   };
 
   // Deleted toast
@@ -81,7 +97,8 @@ function TodoPage() {
 
     // Theme Provider
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-        {/* Toast provider */}
+
+        {/* Toast */}
         <Toaster richColors position="top-center" />
 
         <div className="fixed inset-0 flex items-center justify-center transition-colors duration-300 bg-gray-50 dark:bg-gray-900">
