@@ -2,6 +2,8 @@ import React from "react";
 import type { RefObject } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { FiCheck } from "react-icons/fi";
+import { Trash } from "lucide-react"
 
 interface TodoItemProps {
   id: number;
@@ -48,12 +50,16 @@ const TodoItem: React.FC<TodoItemProps> = ({
             <div className="w-5 h-0.25 bg-gray-400 mb-1 rounded-sm"></div>
         </div>
 
-        {/* Done Circle */}
+        {/* Done */}
         <div
-            onClick={() => toggleDone(id)}
-            className={`w-5 h-5 rounded-full border border-gray-500 flex items-center justify-center cursor-pointer transition-colors shrink-0 ${
+          onClick={() => toggleDone(id)}
+          className={`w-5 h-5 rounded-full border border-gray-500 flex items-center justify-center cursor-pointer transition-colors shrink-0 ${
             done ? "bg-blue-500 border-blue-500" : "bg-transparent"}`}>
 
+          {/* Tick */}
+          <FiCheck
+            className={`text-white transition-transform duration-300 ease-out ${
+              done ? "scale-90 opacity-100" : "scale-0 opacity-0"}`}/>
         </div>
 
         {/* Text Input */}
@@ -72,7 +78,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
         <div
             onClick={() => handleDelete(id)}
             className="text-sm px-3 py-1 rounded-3xl flex items-center justify-center border border-gray-300 flex-shrink-0 cursor-pointer hover:bg-gray-100 transition">
-            Delete
+            <Trash className="w-4 h-4 text-red-400"/>
         </div>
 
     </div>

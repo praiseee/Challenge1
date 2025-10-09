@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import useTodoStore from "../store/todoStore";
 import AddBtn from "../components/TodoComp/AddBtn";
 import TodoItem from "../components/TodoComp/TodoItem";
+import ModeToggle from "../components/TodoComp/ModeToggle";
+import { ThemeProvider } from "../components/TodoComp/ThemeProvider";
 
 import {DndContext,closestCenter,PointerSensor,useSensor,useSensors,} from "@dnd-kit/core";
 import {arrayMove,SortableContext,verticalListSortingStrategy,} from "@dnd-kit/sortable";
@@ -67,51 +69,63 @@ function TodoPage() {
   );
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center">
-      <div className="relative bg-white rounded-xl shadow-xl max-w-[400px] h-[500px] w-full overflow-auto p-6 flex flex-col">
-        <h2 className="text-lg font-semibold mb-4">Your To-do List</h2>
 
-        {/*Search*/}
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchItem}
-          onChange={(e) => setSearchItem(e.target.value)}
-          className="mb-4 p-1 text-sm border rounded-md w-full focus:outline-none focus:ring-1 focus:ring-blue-300"/>
+    // ThemeProvider so ModeToggle works
+    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+      <div className="fixed inset-0 flex items-center justify-center transition-colors duration-300 bg-gray-50 dark:bg-gray-900">
+        <div className="relative bg-white dark:bg-gray-800 dark:text-gray-100 rounded-xl shadow-xl max-w-[400px] h-[500px] w-full 
+        overflow-auto p-6 flex flex-col transition-colors duration-300">
 
-        <DndContext
-          sensors={sensors}
-          collisionDetection={closestCenter}
-          onDragEnd={handleDragEnd}>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold">Your To-do List</h2>
+            
+            <ModeToggle />
+          </div>
 
-          <SortableContext
-            items={filteredList.map((i) => i.id)}
-            strategy={verticalListSortingStrategy}>
+          {/*Search*/}
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchItem}
+            onChange={(e) => setSearchItem(e.target.value)}
+            className="mb-4 p-1 text-sm border rounded-md w-full 
+            focus:outline-none focus:ring-1 focus:ring-blue-300 dark:bg-gray-700 
+            dark:border-gray-600 dark:placeholder-gray-300 dark:focus:ring-blue-500 transition-colors duration-300"/>
 
-            <div className="flex flex-col gap-3">
-              {filteredList.map((item, idx) => (
-                <TodoItem
-                  key={item.id}
-                  id={item.id}
-                  value={item.text}
-                  done={item.done}
-                  isLast={idx === filteredList.length - 1}
-                  lastInputRef={lastInputRef}
-                  handleChange={handleChange}
-                  handleKeyDown={handleKeyDown}
-                  toggleDone={toggleDone}
-                  handleDelete={handleDelete}/>
-              ))}
-            </div>
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}>
 
-          </SortableContext>
-        </DndContext>
+            <SortableContext
+              items={filteredList.map((i) => i.id)}
+              strategy={verticalListSortingStrategy}>
 
-        <div className="absolute bottom-6 right-6">
-          <AddBtn onClick={handleAddClick} />
+              <div className="flex flex-col gap-3">
+                {filteredList.map((item, idx) => (
+                  <TodoItem
+                    key={item.id}
+                    id={item.id}
+                    value={item.text}
+                    done={item.done}
+                    isLast={idx === filteredList.length - 1}
+                    lastInputRef={lastInputRef}
+                    handleChange={handleChange}
+                    handleKeyDown={handleKeyDown}
+                    toggleDone={toggleDone}
+                    handleDelete={handleDelete}/>
+
+                ))}
+              </div>
+            </SortableContext>
+          </DndContext>
+
+          <div className="absolute bottom-6 right-6">
+            <AddBtn onClick={handleAddClick} />
+          </div>
         </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 
