@@ -5,16 +5,18 @@ import TodoItem from "../components/TodoComp/TodoItem";
 import ModeToggle from "../components/TodoComp/ModeToggle";
 import { ThemeProvider } from "../components/TodoComp/ThemeProvider";
 
-import {DndContext,closestCenter,PointerSensor,useSensor,useSensors,} from "@dnd-kit/core";
-import {arrayMove,SortableContext,verticalListSortingStrategy,} from "@dnd-kit/sortable";
+import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
+import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+
+// Import Sonner toast
+import { Toaster, toast } from "sonner";
 
 function TodoPage() {
 
-  // Uses list directly from the store
-  // Persists the reordered array after drag.
+  // Uses list from store
   const { list, addList, removeList, toggleDone, updateListOrder, updateText } = useTodoStore();
 
-  // Local state for the search input.
+  // Local state for search input
   const [searchItem, setSearchItem] = useState("");
   const lastInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -23,14 +25,16 @@ function TodoPage() {
     lastInputRef.current?.focus();
   }, [list.length]);
 
-  // DndContext so drag gestures are recognized.
+  // DnD, drag gestures recognised
   const sensors = useSensors(useSensor(PointerSensor));
 
+  // Added toast
   const handleAddClick = () => {
     addList("");
+    toast.success("New task added!", { duration: 1000 });
   };
 
-  // Enter key handling, add new row
+  // Enter key, add new row
   const handleKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>,
     id: number,
@@ -38,21 +42,26 @@ function TodoPage() {
   ) => {
     if (e.key === "Enter" && value.trim()) {
       const isLast = list[list.length - 1]?.id === id;
-      if (isLast) addList("");
+      if (isLast) {
+        addList("");
+        toast.success("New task added!", { duration: 1000 });
+      }
     }
   };
 
-  // Typing updates the store immediately
+  // Updated toast
   const handleChange = (id: number, value: string) => {
-    updateText(id, value); //Updated individually
+    updateText(id, value);
+    toast.info("Task Updated", { duration: 1000 });
   };
 
-  // Delete
+  // Deleted toast
   const handleDelete = (id: number) => {
     removeList(id);
+    toast.error("Task deleted!", { duration: 1000 });
   };
 
-  // Reorder handler
+  // Reorder Handler
   const handleDragEnd = (event: any) => {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
@@ -70,61 +79,63 @@ function TodoPage() {
 
   return (
 
-    // ThemeProvider so ModeToggle works
+    // Theme Provider
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-      <div className="fixed inset-0 flex items-center justify-center transition-colors duration-300 bg-gray-50 dark:bg-gray-900">
-        <div className="relative bg-white dark:bg-gray-800 dark:text-gray-100 rounded-xl shadow-xl max-w-[400px] h-[500px] w-full 
-        overflow-auto p-6 flex flex-col transition-colors duration-300">
+        {/* Toast provider */}
+        <Toaster richColors position="top-center" />
 
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold">Your To-do List</h2>
-            
-            <ModeToggle />
-          </div>
+        <div className="fixed inset-0 flex items-center justify-center transition-colors duration-300 bg-gray-50 dark:bg-gray-900">
+          <div className="relative bg-white dark:bg-gray-800 dark:text-gray-100 rounded-xl shadow-xl max-w-[400px] h-[500px] w-full 
+          overflow-auto p-6 flex flex-col transition-colors duration-300">
 
-          {/*Search*/}
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchItem}
-            onChange={(e) => setSearchItem(e.target.value)}
-            className="mb-4 p-1 text-sm border rounded-md w-full 
-            focus:outline-none focus:ring-1 focus:ring-blue-300 dark:bg-gray-700 
-            dark:border-gray-600 dark:placeholder-gray-300 dark:focus:ring-blue-500 transition-colors duration-300"/>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold">Your To-do List</h2>
+              <ModeToggle />
+            </div>
 
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}>
+            {/* Search */}
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchItem}
+              onChange={(e) => setSearchItem(e.target.value)}
+              className="mb-4 p-1 text-sm border rounded-md w-full 
+              focus:outline-none focus:ring-1 focus:ring-blue-300 dark:bg-gray-700 
+              dark:border-gray-600 dark:placeholder-gray-300 dark:focus:ring-blue-500 transition-colors duration-300"/>
 
-            <SortableContext
-              items={filteredList.map((i) => i.id)}
-              strategy={verticalListSortingStrategy}>
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}>
 
-              <div className="flex flex-col gap-3">
-                {filteredList.map((item, idx) => (
-                  <TodoItem
-                    key={item.id}
-                    id={item.id}
-                    value={item.text}
-                    done={item.done}
-                    isLast={idx === filteredList.length - 1}
-                    lastInputRef={lastInputRef}
-                    handleChange={handleChange}
-                    handleKeyDown={handleKeyDown}
-                    toggleDone={toggleDone}
-                    handleDelete={handleDelete}/>
+              <SortableContext
+                items={filteredList.map((i) => i.id)}
+                strategy={verticalListSortingStrategy}>
 
-                ))}
-              </div>
-            </SortableContext>
-          </DndContext>
+                <div className="flex flex-col gap-3">
+                  {filteredList.map((item, idx) => (
+                    <TodoItem
+                      key={item.id}
+                      id={item.id}
+                      value={item.text}
+                      done={item.done}
+                      isLast={idx === filteredList.length - 1}
+                      lastInputRef={lastInputRef}
+                      handleChange={handleChange}
+                      handleKeyDown={handleKeyDown}
+                      toggleDone={toggleDone}
+                      handleDelete={handleDelete}/>
+                  ))}
+                </div>
 
-          <div className="absolute bottom-6 right-6">
-            <AddBtn onClick={handleAddClick} />
+              </SortableContext>
+            </DndContext>
+
+            <div className="absolute bottom-6 right-6">
+              <AddBtn onClick={handleAddClick} />
+            </div>
           </div>
         </div>
-      </div>
     </ThemeProvider>
   );
 }
