@@ -79,7 +79,7 @@ function TodoPage() {
 
   // Reorder Handler
   const handleDragEnd = (event: any) => {
-    const { active, over } = event;
+      const { active, over } = event;
     if (!over || active.id === over.id) return;
 
     const oldIndex = list.findIndex((item) => item.id === active.id);
