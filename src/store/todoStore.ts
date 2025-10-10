@@ -5,6 +5,7 @@ interface Todo {
   id: number;
   text: string;
   done: boolean;
+  tagColor?: string;
 }
 
 interface TodoState {
@@ -13,6 +14,7 @@ interface TodoState {
   removeList: (id: number) => void;
   toggleDone: (id: number) => void;
   updateText: (id: number, text: string) => void;
+  updateTag: (id: number, color: string) => void;
   updateListOrder: (newList: Todo[]) => void;
 }
 
@@ -24,7 +26,10 @@ const useTodoStore = create<TodoState>()(
       // Add
       addList: (text) =>
         set((state) => ({
-          list: [...state.list, { id: Date.now(), text, done: false }],
+          list: [
+            ...state.list,
+            { id: Date.now(), text, done: false, tagColor: "" },
+          ],
         })),
 
       // Delete
@@ -33,7 +38,7 @@ const useTodoStore = create<TodoState>()(
           list: state.list.filter((todo) => todo.id !== id),
         })),
 
-      // Circle
+      // Toggle Done
       toggleDone: (id) =>
         set((state) => ({
           list: state.list.map((todo) =>
@@ -41,7 +46,7 @@ const useTodoStore = create<TodoState>()(
           ),
         })),
 
-      // Update
+      // Update Text
       updateText: (id, text) =>
         set((state) => ({
           list: state.list.map((todo) =>
@@ -49,6 +54,15 @@ const useTodoStore = create<TodoState>()(
           ),
         })),
 
+      // Update Tag Color
+      updateTag: (id, color) =>
+        set((state) => ({
+          list: state.list.map((todo) =>
+            todo.id === id ? { ...todo, tagColor: color } : todo
+          ),
+        })),
+
+      // Reorder
       updateListOrder: (newList) => set({ list: newList }),
     }),
     {
