@@ -113,7 +113,7 @@ function TodoPage() {
       <Toaster richColors position="top-center" />
 
       <div className="fixed inset-0 flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-        <div className="relative bg-white dark:bg-gray-800 dark:text-gray-100 rounded-xl shadow-xl max-w-[400px] h-[500px] w-full overflow-auto p-6 flex flex-col">
+        <div className="relative bg-background dark:text-gray-100 rounded-xl shadow-xl max-w-[400px] h-[500px] w-full overflow-auto p-6 flex flex-col">
 
           {/* Header */}
           <div className="flex items-center justify-between mb-4">
