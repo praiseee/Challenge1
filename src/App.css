@@ -1,11 +1,12 @@
 /* App.css */
-body {
+.app-page {
   background-color: #000;
   color: #fff;
   margin: 0;
-  font-family: system-ui, sans-serif; 
+  font-family: system-ui, sans-serif;
   background-image: url('images/bg.png');
   background-position: center top;
   background-size: 700px 800px;
   background-repeat: no-repeat;
+  min-height: 100vh; /* fill screen */
 }

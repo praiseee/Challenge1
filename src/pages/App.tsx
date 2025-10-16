@@ -1,19 +1,20 @@
 import '../App.css';
-import NavBar from '../components/NavBar';
-import Button from '../components/Button';
-import ImageRow from '../components/ImageRow';
-import ServSec from '../components/Services';
+import NavBar from '../components/CH1/NavBar.tsx';
+import Button from '../components/CH1/Button.tsx';
+import ImageRow from '../components/CH1/ImageRow.tsx';
+import ServSec from '../components/CH1/Services.tsx';
 import { motion } from "framer-motion";
-import HoverBtn from '../components/hoverBtn';
-import Counter from '../components/Counter';
-import AgentWindow from '../components/AgentWindow.tsx';
-import AccordionComp from "../components/AccordionComp";
-import InfoBoxes from "../components/InfoBoxes";
-import GlowButton from "../components/GlowButton";
+import HoverBtn from '../components/CH1/hoverBtn.tsx';
+import Counter from '../components/CH1/Counter.tsx';
+import AgentWindow from '../components/CH1/AgentWindow.tsx';
+import AccordionComp from "../components/CH1/AccordionComp.tsx";
+import InfoBoxes from "../components/CH1/InfoBoxes.tsx";
+import GlowButton from "../components/CH1/GlowButton.tsx";
+import SlantImageRow from '../components/CH1/SlantImageRow.tsx';
 
 function App() {
   return (
-    <div className="min-h-screen">
+    <div className="app-page min-h-screen">
 
       {/* Navbar */}
       <NavBar />
@@ -146,7 +147,9 @@ function App() {
       </section>
 
       {/* Glow Button */}
-      <GlowButton>Glowing animation</GlowButton>
+      <GlowButton>Glow</GlowButton>
+
+      <SlantImageRow images={slantimages} />
       
     </div>
   );
@@ -163,6 +166,15 @@ const images = [
   "images/l3.png",
   "images/l4.png",
   "images/l5.png",
+];
+
+const slantimages = [
+  "images/s1.png",
+  "images/s2.png",
+  "images/s3.png",
+  "images/s4.png",
+  "images/s5.png",
+  "images/s6.png",
 ];
 
 export default App;
